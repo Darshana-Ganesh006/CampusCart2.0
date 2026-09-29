@@ -7,10 +7,32 @@ const CART_KEY = "campusCartCart";
 const WISHLIST_KEY = "campusCartWishlist";
 const THEME_KEY = "campusCartTheme";
 
+function getProductImage(product) {
+    if (product.id >= 1 && product.id <= 8) {
+        return `${import.meta.env.BASE_URL}images/Generated image ${product.id}.png`;
+    }
+
+    return product.image;
+}
+
 function App() {
     const [products, setProducts] = useState(() => {
         const saved = localStorage.getItem(PRODUCTS_KEY);
-        return saved ? JSON.parse(saved) : productsData;
+
+        if (!saved) {
+            return productsData;
+        }
+
+        try {
+            const savedProducts = JSON.parse(saved);
+
+            return savedProducts.map((product) => ({
+                ...product,
+                image: getProductImage(product),
+            }));
+        } catch {
+            return productsData;
+        }
     });
 
     const [cart, setCart] = useState(() => {
@@ -279,6 +301,7 @@ function App() {
                 ...currentCart,
                 {
                     ...product,
+                    image: getProductImage(product),
                     quantity: 1
                 }
             ];
@@ -372,7 +395,10 @@ function App() {
         } else {
             setWishlist((current) => [
                 ...current,
-                product
+                {
+                    ...product,
+                    image: getProductImage(product)
+                }
             ]);
 
             showSuccess(
@@ -400,15 +426,15 @@ function App() {
             <div className="product-card">
                 <div className="product-image-wrap">
                     <img
-                        src={product.image}
+                        src={getProductImage(product)}
                         alt={product.name}
                         className="product-image"
                     />
 
                     <button
                         className={`wishlist-btn ${isWishlisted
-                                ? "active"
-                                : ""
+                            ? "active"
+                            : ""
                             }`}
                         onClick={() =>
                             toggleWishlist(product)
@@ -437,8 +463,8 @@ function App() {
 
                         <button
                             className={`add-cart-btn ${isInCart
-                                    ? "added"
-                                    : ""
+                                ? "added"
+                                : ""
                                 }`}
                             onClick={() =>
                                 addToCart(product)
@@ -697,8 +723,8 @@ function App() {
                         <button
                             key={item}
                             className={`category-btn ${category === item
-                                    ? "active"
-                                    : ""
+                                ? "active"
+                                : ""
                                 }`}
                             onClick={() =>
                                 setCategory(item)
@@ -1033,9 +1059,9 @@ function App() {
                                         key={item.id}
                                     >
                                         <img
-                                            src={
-                                                item.image
-                                            }
+                                            src={getProductImage(
+                                                item
+                                            )}
                                             alt={
                                                 item.name
                                             }
@@ -1183,9 +1209,9 @@ function App() {
                                         }
                                     >
                                         <img
-                                            src={
-                                                product.image
-                                            }
+                                            src={getProductImage(
+                                                product
+                                            )}
                                             alt={
                                                 product.name
                                             }
@@ -1265,9 +1291,9 @@ function App() {
 
                     <div className="product-modal-content">
                         <img
-                            src={
-                                selectedProduct.image
-                            }
+                            src={getProductImage(
+                                selectedProduct
+                            )}
                             alt={
                                 selectedProduct.name
                             }
