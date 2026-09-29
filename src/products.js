@@ -4,56 +4,56 @@ const products = [
         name: "Notebook",
         category: "Stationery",
         price: 80,
-        image: "/images/Generated image 1.png"
+        image: `${import.meta.env.BASE_URL}images/Generated image 1.png`
     },
     {
         id: 2,
         name: "Pen",
         category: "Stationery",
         price: 50,
-        image: "/images/Generated image 2.png"
+        image: `${import.meta.env.BASE_URL}images/Generated image 2.png`
     },
     {
         id: 3,
         name: "Wireless Mouse",
         category: "Electronics",
         price: 399,
-        image: "/images/Generated image 3.png"
+        image: `${import.meta.env.BASE_URL}images/Generated image 3.png`
     },
     {
         id: 4,
         name: "USB Drive",
         category: "Electronics",
         price: 299,
-        image: "/images/Generated image 4.png"
+        image: `${import.meta.env.BASE_URL}images/Generated image 4.png`
     },
     {
         id: 5,
         name: "College Backpack",
         category: "Bags",
         price: 699,
-        image: "/images/Generated image 5.png"
+        image: `${import.meta.env.BASE_URL}images/Generated image 5.png`
     },
     {
         id: 6,
         name: "Study Lamp",
         category: "Accessories",
         price: 499,
-        image: "/images/Generated image 6.png"
+        image: `${import.meta.env.BASE_URL}images/Generated image 6.png`
     },
     {
         id: 7,
         name: "Water Bottle",
         category: "Accessories",
         price: 249,
-        image: "/images/Generated image 7.png"
+        image: `${import.meta.env.BASE_URL}images/Generated image 7.png`
     },
     {
         id: 8,
         name: "Umbrella",
         category: "Accessories",
         price: 299,
-        image: "/images/Generated image 8.png"
+        image: `${import.meta.env.BASE_URL}images/Generated image 8.png`
     }
 ];
 
